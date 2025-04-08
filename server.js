@@ -21,10 +21,10 @@ app.use(cors({
 }));
 app.use(express.json());
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "flightbao"
+  host: "sql12.freesqldatabase.com",
+  user: "sql12772024",
+  password: "2Fl8L7NcMg",
+  database: "sql12772024"
 })
 var amadeus = new Amadeus({
   clientId: "lZaaZR1oAC7AjFmSoxdFW48M5IjSM9Bl",
