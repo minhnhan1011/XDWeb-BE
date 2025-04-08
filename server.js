@@ -15,7 +15,7 @@ app.use(
 );
 app.use(cookieParser());
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://xd-web-fe.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true
 }));
@@ -182,6 +182,3 @@ app.get("/ticket", (req, res) => {
     }
   });
 });
-  app.listen(8081, () => {
-    console.log("Howdy, I am running at PORT 8081");
-  });
