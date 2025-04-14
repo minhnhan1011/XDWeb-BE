@@ -27,8 +27,8 @@ const db = mysql.createConnection({
   database: "sql12772024"
 })
 var amadeus = new Amadeus({
-  clientId: "lZaaZR1oAC7AjFmSoxdFW48M5IjSM9Bl",
-  clientSecret: "jplLBmg8EzFQing5"
+  clientId: "hdJ8a3rNsEBnlAKSDjh8rfWOiv6sDF8I",
+  clientSecret: "v0AxZ1PXGtP6bTRg"
 });
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
