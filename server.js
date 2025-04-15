@@ -75,10 +75,14 @@ app.post('/login', function (req, res) {
     })
 })
 
-app.get('/logout', function (req, res) {
-    res.clearCookie('token')
-    return res.json({ Status: "Success" })
-})
+axios.get(`https://xdweb-be.onrender.com/logout`, { withCredentials: true })
+    .then(res => {
+        // Cập nhật lại trạng thái auth sau khi đăng xuất
+        setAuth(false);
+        setName('');
+    })
+    .catch(err => console.log(err));
+
 app.post('/signup', function(req,res){
     db.connect(function (err) {
         const values = [
