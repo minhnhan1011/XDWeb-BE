@@ -59,7 +59,14 @@ app.post('/login', function (req, res) {
             if (data.length > 0) {
                 const name = data[0].Tenkh;
                 const token = jwt.sign({ name }, "our-jsonwebtoken-secret-key", { expiresIn: '1d' });
-                res.cookie('token', token)
+
+                // ✅ Sửa ở đây
+                res.cookie('token', token, {
+                    httpOnly: true,
+                    sameSite: 'None',
+                    secure: true
+                });
+
                 return res.json({ Status: "Đăng nhập thành công" })
             } else {
                 return res.json({ Message: "Tài khoản không tồn tại" })
@@ -67,6 +74,7 @@ app.post('/login', function (req, res) {
         })
     })
 })
+
 app.get('/logout', function (req, res) {
     res.clearCookie('token')
     return res.json({ Status: "Success" })
