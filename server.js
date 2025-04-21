@@ -27,8 +27,8 @@ const db = mysql.createConnection({
   database: "sql12772024"
 })
 var amadeus = new Amadeus({
-  clientId: "hdJ8a3rNsEBnlAKSDjh8rfWOiv6sDF8I",
-  clientSecret: "v0AxZ1PXGtP6bTRg"
+  clientId: "lZaaZR1oAC7AjFmSoxdFW48M5IjSM9Bl",
+  clientSecret: "jplLBmg8EzFQing5"
 });
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
@@ -59,14 +59,7 @@ app.post('/login', function (req, res) {
             if (data.length > 0) {
                 const name = data[0].Tenkh;
                 const token = jwt.sign({ name }, "our-jsonwebtoken-secret-key", { expiresIn: '1d' });
-
-                // ✅ Sửa ở đây
-                res.cookie('token', token, {
-                    httpOnly: true,
-                    sameSite: 'None',
-                    secure: true
-                });
-
+                res.cookie('token', token)
                 return res.json({ Status: "Đăng nhập thành công" })
             } else {
                 return res.json({ Message: "Tài khoản không tồn tại" })
@@ -74,12 +67,10 @@ app.post('/login', function (req, res) {
         })
     })
 })
-
 app.get('/logout', function (req, res) {
     res.clearCookie('token')
     return res.json({ Status: "Success" })
 })
-
 app.post('/signup', function(req,res){
     db.connect(function (err) {
         const values = [
